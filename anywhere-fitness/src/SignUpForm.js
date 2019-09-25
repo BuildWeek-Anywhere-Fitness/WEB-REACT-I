@@ -1,7 +1,10 @@
 import App from "./App";
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
+import { Formik, Field, ErrorMessage, FieldArray } from "formik";
 import * as yup from "yup";
+import { Button, FormGroup, FormControl } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import styled from "styled-components";
 
 const validationSchema = yup.object().shape({
   userName: yup.string().required(),
@@ -16,8 +19,6 @@ const validationSchema = yup.object().shape({
 });
 
 function SignUpForm(props) {
-
-    
   return (
     <Formik
       initialValues={props.initialUserForm}
@@ -26,24 +27,34 @@ function SignUpForm(props) {
       render={props => {
         return (
           <Form>
-            <div>
-              {/* <label> user name </label> */}
-              <Field name="username" type="text" placeholder="Username" />
-              <ErrorMessage name="name" component="div" />
-            </div>
-            <div>
-              {/* <label> email </label> */}
-              <Field name="email" type="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" />
-            </div>
-            <div>
-              {/* <label> password </label> */}
-              <Field name="password" type="password" placeholder="Password" />
-              <ErrorMessage name="password" component="div" />
-            </div>
-            <div>
-              <button type="submit"> Submit </button>
-            </div>
+            <Form.Group controlId="FormBasicName">
+              <Form.Control type="firstname" placeholder="First Name" />
+            </Form.Group>
+            <Form.Group controlId="FormBasicName">
+              <Form.Control type="lastname" placeholder="Last Name" />
+            </Form.Group>
+            <Form.Group controlId="FormBasicUsername">
+              <Form.Control type="username" placeholder="Username" />
+            </Form.Group>
+            <Form.Group controlId="FormBasicEmail">
+              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group controlId="FormBasicPassword">
+              <Form.Control type="password" placeholder="Password" />
+              <Form.Text className="text-muted">
+                Must be at least 8 characters.
+              </Form.Text>
+            </Form.Group>
+            <Form.Group controlId="FormBasicCheckbox">
+              <Form.Check type="checkbox" label="Accept Terms & Conditions" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Join
+            </Button>
           </Form>
         );
       }}

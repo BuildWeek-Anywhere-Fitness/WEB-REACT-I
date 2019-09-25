@@ -1,14 +1,14 @@
 import App from "./App";
 import React, { useState, useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
+import { Formik, Field, ErrorMessage, FieldArray } from "formik";
 import * as yup from "yup";
+import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import styled from "styled-components";
+
 
 const validationSchema = yup.object().shape({
   userName: yup.string().required(),
-  // email: yup
-  //   .string()
-  //   .required()
-  //   .email(),
   password: yup
     .string()
     .required()
@@ -16,8 +16,6 @@ const validationSchema = yup.object().shape({
 });
 
 function UserForm(props) {
-
-    
   return (
     <Formik
       initialValues={props.initialUserForm}
@@ -26,24 +24,31 @@ function UserForm(props) {
       render={props => {
         return (
           <Form>
-            <div>
-              {/* <label> name </label> */}
-              <Field name="name" type="text" placeholder="Username" />
+            {/* <div>
+              <label> name </label>
+              <Field name="name" type="text" placeholder="username" />
               <ErrorMessage name="name" component="div" />
             </div>
             <div>
-              {/* <label> Email </label> */}
-              {/* <Field name="email" type="email" placeholder="Email" />
-              <ErrorMessage name="email" component="div" />
-            </div>
-            <div> */}
-              {/* <label> Password </label> */}
-              <Field name="password" type="password" placeholder="Password" />
+              <Field name="password" type="password" placeholder="password" />
               <ErrorMessage name="password" component="div" />
             </div>
             <div>
-              <button type="submit"> Submit </button>
-            </div>
+            <Button type="submit" variant="primary" size="sm"> Submit </Button>
+            </div> */}
+            <Form.Group controlId="FormBasicUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="username" placeholder="Username" />
+            </Form.Group>
+
+            <Form.Group controlId="FormBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
           </Form>
         );
       }}
