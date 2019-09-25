@@ -4,11 +4,11 @@ import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import * as yup from "yup";
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup
-    .string()
-    .required()
-    .email(),
+  userName: yup.string().required(),
+  // email: yup
+  //   .string()
+  //   .required()
+  //   .email(),
   password: yup
     .string()
     .required()
@@ -27,17 +27,17 @@ function UserForm(props) {
         return (
           <Form>
             <div>
-              <label> Name </label>
-              <Field name="name" type="text" placeholder="Name" />
+              {/* <label> name </label> */}
+              <Field name="name" type="text" placeholder="Username" />
               <ErrorMessage name="name" component="div" />
             </div>
             <div>
-              <label> Email </label>
-              <Field name="email" type="email" placeholder="Email" />
+              {/* <label> Email </label> */}
+              {/* <Field name="email" type="email" placeholder="Email" />
               <ErrorMessage name="email" component="div" />
             </div>
-            <div>
-              <label> Password </label>
+            <div> */}
+              {/* <label> Password </label> */}
               <Field name="password" type="password" placeholder="Password" />
               <ErrorMessage name="password" component="div" />
             </div>

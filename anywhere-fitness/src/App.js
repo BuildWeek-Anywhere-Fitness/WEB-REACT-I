@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import UserForm from "./Form";
+import UserForm from "./SignInForm";
+import SignUpForm from "./SignUpForm";
 import Axios from "axios";
+import { Route, NavLink } from "react-router-dom";
+
 
 const initialUsers = [
   {
@@ -21,18 +24,27 @@ const initialUserForm = {
   username: ""
 };
 
+const initialSignUpForm = {
+  id: 'uuid',
+  username: "",
+  email: "",
+  password: ""
+
+};
+
 const App = () => {
   const [users, setUsers] = useState(initialUsers);
   const [userForm, setUserForm] = useState(initialUserForm);
+  const [signUpForm, setSignUpForm] = useState(initialSignUpForm);
 
-  const onNameChange = e => {
-    setUserForm({ ...userForm, name: e.target.value });
+  const onUserNameChange = e => {
+    setUserForm({ ...userForm, userName: e.target.value });
   };
   const onEmailChange = e => {
-    setUserForm({ ...userForm, email: e.target.value });
+    setSignUpForm({ ...signUpForm, email: e.target.value });
   };
   const onPasswordChange = e => {
-    setUserForm({ ...userForm, role: e.target.value });
+    setUserForm({ ...userForm, password: e.target.value });
     // const onDetailChange = e => {
     //   setUserForm({...teamForm, [e.target.id]: e.target.value});
     //
@@ -40,8 +52,8 @@ const App = () => {
   const onFormSubmit = e => {
     // e.preventDefault();
     const newUser = {
-      name: userForm.name,
-      email: userForm.email,
+      userName: userForm.userName,
+      email: signUpForm.email,
       password: userForm.password
     };
     const newSignUp = users.concat(newUser);
@@ -52,20 +64,41 @@ const App = () => {
 
   return (
     <div>
-      {!users.username && (
+      {/* {!users.username && (
         <div>
           <h2>SIGN IN</h2>
         </div>
-      )}
+      )} */}
       <div>
-        <UserForm
-          onNameChange={onNameChange}
+        <NavLink to="/signIn">Sign In</NavLink>
+        <NavLink to="/signUp">JOIN FOR FREE ! </NavLink>
+
+        <Route exact path="/signIn"
+        render={props => <UserForm
+          onUserNameChange={onUserNameChange}
           onEmailChange={onEmailChange}
           onPasswordChange={onPasswordChange}
           // onDetailChange={onDetailChange}
           onFormSubmit={onFormSubmit}
           userForm={userForm}
           users={users}
+        />}
+        />
+        <div>
+      {/* {!users.username && (
+        <div>
+          <h2> JOIN FOR FREE !</h2>
+        </div>
+      )} */}
+      </div>
+        <Route exact path="/signUp" render={props => <SignUpForm
+          onUserNameChange={onUserNameChange}
+          onEmailChange={onEmailChange}
+          onPasswordChange={onPasswordChange}
+          // onDetailChange={onDetailChange}
+          onFormSubmit={onFormSubmit}
+          signUpForm={signUpForm}
+        />}
         />
       </div>
       {users.map(el => (
