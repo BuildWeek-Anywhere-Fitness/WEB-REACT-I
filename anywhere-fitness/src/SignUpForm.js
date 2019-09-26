@@ -1,9 +1,9 @@
 import App from "./App";
 import React, { useState, useEffect } from "react";
-import { Formik, Field, ErrorMessage, FieldArray } from "formik";
+import { Formik, Form as FormFormik, Field, ErrorMessage, FieldArray } from "formik";
 import * as yup from "yup";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import Form  from "react-bootstrap/Form";
 import styled from "styled-components";
 
 const validationSchema = yup.object().shape({
@@ -28,7 +28,7 @@ function SignUpForm(props) {
       onSubmit={props.onFormSubmit}
       render={props => {
         return (
-          <Form noValidate>
+          <FormFormik noValidate>
             <Form.Group controlId="validationFormik01">
               <Form.Control
                 name="firstName"
@@ -75,7 +75,7 @@ function SignUpForm(props) {
             <Button variant="primary" type="submit">
               Register
             </Button>
-          </Form>
+          </FormFormik>
         );
       }}
     />
