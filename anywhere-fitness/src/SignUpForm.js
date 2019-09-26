@@ -7,6 +7,8 @@ import Form from "react-bootstrap/Form";
 import styled from "styled-components";
 
 const validationSchema = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName: yup.string().required(),
   userName: yup.string().required(),
   email: yup
     .string()
@@ -26,24 +28,42 @@ function SignUpForm(props) {
       onSubmit={props.onFormSubmit}
       render={props => {
         return (
-          <Form>
-            <Form.Group controlId="FormBasicName">
-              <Form.Control type="firstname" placeholder="First Name" />
+          <Form noValidate>
+            <Form.Group controlId="validationFormik01">
+              <Form.Control
+                name="firstName"
+                type="text"
+                placeholder="First Name"
+                // value={values.firstName}
+                // isValid={touched.firstName && !errors.firstName}
+              />
             </Form.Group>
-            <Form.Group controlId="FormBasicName">
-              <Form.Control type="lastname" placeholder="Last Name" />
+            <Form.Group controlId="validationFormik02">
+              <Form.Control
+                name="lastName"
+                type="text"
+                placeholder="Last Name"
+                // value={values.firstName}
+                // isValid={touched.lastName && !errors.lastName}
+              />
             </Form.Group>
-            <Form.Group controlId="FormBasicUsername">
-              <Form.Control type="username" placeholder="Username" />
+            <Form.Group controlId="ValidationFormikUsername">
+              <Form.Control
+                name="username"
+                type="username"
+                placeholder="Username"
+                // value={values.firstName}
+                // isInValid={touched.username && !errors.username}
+              />
             </Form.Group>
-            <Form.Group controlId="FormBasicEmail">
+            <Form.Group controlId="ValidationFormikEmail">
               <Form.Control type="email" placeholder="Enter email" />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="FormBasicPassword">
+            <Form.Group controlId="ValidationFormikPassword">
               <Form.Control type="password" placeholder="Password" />
               <Form.Text className="text-muted">
                 Must be at least 8 characters.
@@ -53,7 +73,7 @@ function SignUpForm(props) {
               <Form.Check type="checkbox" label="Accept Terms & Conditions" />
             </Form.Group>
             <Button variant="primary" type="submit">
-              Join
+              Register
             </Button>
           </Form>
         );

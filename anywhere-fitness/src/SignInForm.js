@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 
 const validationSchema = yup.object().shape({
-  userName: yup.string().required(),
+  username: yup.string().required(),
   password: yup
     .string()
     .required()
@@ -38,12 +38,12 @@ function UserForm(props) {
             </div> */}
             <Form.Group controlId="FormBasicUsername">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="username" placeholder="Username" />
+              <Form.Control name="name" type="name" placeholder="Username" />
             </Form.Group>
 
             <Form.Group controlId="FormBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control name="password" type="password" placeholder="Password" />
             </Form.Group>
 
             <Button variant="primary" type="submit">
