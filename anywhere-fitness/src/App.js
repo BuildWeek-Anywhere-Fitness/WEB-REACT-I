@@ -6,30 +6,19 @@ import { Route, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import img from "../src/img/fitnessAnywhere2.jpg";
 
-const initialUsers = [
-  {
-    id: 1,
-    username: "jims"
-  },
-  {
-    id: 2,
-    username: "jimss"
-  },
-  {
-    id: 3,
-    username: "dan"
-  }
-];
+
+const userApi = ("https://anywhere-health.herokuapp.com/api/users/")
+
 const initialUserForm = {
-  id: "",
+  uuid: "",
   username: ""
 };
 
 const initialSignUpForm = {
   id: "uuid",
   username: "",
-  email: "",
-  password: ""
+  // email: "",
+  // password: ""
 };
 
 const App = () => {
@@ -53,10 +42,16 @@ const App = () => {
       email: signUpForm.email,
       password: userForm.password
     };
+    axios
+    .post(userApi, newUser)
+    .then(res => {
     const newSignUp = users.concat(newUser);
     setUsers(newSignUp);
     setSignUpForm(initialSignUpForm);
     setUserForm(initialUserForm);
+    actions.resetForm();
+  })
+  .catch(err => {});
   };
 
   return (
