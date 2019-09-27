@@ -45,9 +45,6 @@ const App = () => {
   };
   const onPasswordChange = e => {
     setUserForm({ ...userForm, password: e.target.value });
-    // const onDetailChange = e => {
-    //   setUserForm({...teamForm, [e.target.id]: e.target.value});
-    //
   };
   const onFormSubmit = e => {
     e.preventDefault();
@@ -95,7 +92,6 @@ const App = () => {
               onUserNameChange={onUserNameChange}
               onEmailChange={onEmailChange}
               onPasswordChange={onPasswordChange}
-              // onDetailChange={onDetailChange}
               onFormSubmit={onFormSubmit}
               userForm={userForm}
               users={users}
@@ -106,7 +102,7 @@ const App = () => {
           <div>
             <h6>
               {" "}
-              <Link to="/signUp"> Don't have an account? Join </Link>{" "}
+              <Link to="/signUp"> Don't have an account? Join </Link>
             </h6>
           </div>
         </div>
