@@ -6,8 +6,7 @@ import { Route, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import img from "../src/img/fitnessAnywhere2.jpg";
 
-
-const userApi = ("https://anywhere-health.herokuapp.com/api/users/")
+const userApi = "https://anywhere-health.herokuapp.com/api/users/";
 
 const initialUserForm = {
   uuid: "",
@@ -16,13 +15,13 @@ const initialUserForm = {
 
 const initialSignUpForm = {
   id: "uuid",
-  username: "",
+  username: ""
   // email: "",
   // password: ""
 };
 
 const App = () => {
-  const [users, setUsers] = useState(initialUsers);
+  const [users, setUsers] = useState(userApi);
   const [userForm, setUserForm] = useState(initialUserForm);
   const [signUpForm, setSignUpForm] = useState(initialSignUpForm);
 
@@ -35,23 +34,21 @@ const App = () => {
   const onPasswordChange = e => {
     setUserForm({ ...userForm, password: e.target.value });
   };
-  const onFormSubmit = e => {
-    e.preventDefault();
+  const Submit = (values, actions) => {
     const newUser = {
       userName: userForm.userName,
       email: signUpForm.email,
       password: userForm.password
     };
-    axios
-    .post(userApi, newUser)
-    .then(res => {
-    const newSignUp = users.concat(newUser);
-    setUsers(newSignUp);
-    setSignUpForm(initialSignUpForm);
-    setUserForm(initialUserForm);
-    actions.resetForm();
-  })
-  .catch(err => {});
+    Axios.post(userApi, newUser)
+      .then(res => {
+        const newSignUp = users.concat(newUser);
+        setUsers(newSignUp);
+        setSignUpForm(initialSignUpForm);
+        setUserForm(initialUserForm);
+        actions.resetForm();
+      })
+      .catch(err => {});
   };
 
   return (
@@ -87,7 +84,7 @@ const App = () => {
               onUserNameChange={onUserNameChange}
               onEmailChange={onEmailChange}
               onPasswordChange={onPasswordChange}
-              onFormSubmit={onFormSubmit}
+              onFormSubmit={Submit}
               userForm={userForm}
               users={users}
             />
@@ -110,7 +107,7 @@ const App = () => {
               onEmailChange={onEmailChange}
               onPasswordChange={onPasswordChange}
               // onDetailChange={onDetailChange}
-              onFormSubmit={onFormSubmit}
+              onFormSubmit={Submit}
               signUpForm={signUpForm}
             />
           )}

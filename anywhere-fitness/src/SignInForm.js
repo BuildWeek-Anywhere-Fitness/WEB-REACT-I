@@ -29,18 +29,6 @@ function UserForm(props) {
       render={props => {
         return (
           <FormFormik>
-            {/* <div>
-              <label> name </label>
-              <Field name="name" type="text" placeholder="username" />
-              <ErrorMessage name="name" component="div" />
-            </div>
-            <div>
-              <Field name="password" type="password" placeholder="password" />
-              <ErrorMessage name="password" component="div" />
-            </div>
-            <div>
-            <Button type="submit" variant="primary" size="sm"> Submit </Button>
-            </div> */}
             <Form.Group controlId="FormBasicUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control name="name" type="name" placeholder="Username" />

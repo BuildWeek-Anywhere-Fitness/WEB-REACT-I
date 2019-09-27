@@ -23,7 +23,7 @@ const validationSchema = yup.object().shape({
 function SignUpForm(props) {
   return (
     <Formik
-      initialValues={props.initialUserForm}
+      initialValues={props.initialSignUpForm}
       validationSchema={validationSchema}
       onSubmit={props.onFormSubmit}
       render={props => {
